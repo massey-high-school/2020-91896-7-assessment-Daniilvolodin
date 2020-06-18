@@ -1,0 +1,85 @@
+# Number checking function.
+# Checks if the user entered a valid number.
+# Function will warn the user if: input is not a number, input is greater than 26 or if input is less than 1
+def check_num(question):
+    valid = False
+    while not valid:
+        try:
+            response = int(input(question))
+            if response > 26:
+                print('\nTry again, the key cannot be higher than 26')
+            elif response < 1:
+                print('\nTry again, the key cannot be lower than 1')
+            else:
+                return response
+        except ValueError:
+            print(error)
+# Function that checks if the input isn't blank. If the response is blank, it will
+# warn the user to enter something
+def check_text(question):
+    valid = False
+    while not valid:
+        response = input(question)
+        if response == '':
+            print('\nCannot be blank')
+        else:
+           return response
+
+# Num_list turns user string into ASCII number which can be added/subtracted
+# to make a new number
+num_list = []
+# Cipher text is a list that takes in Ascii number and turns it into a new character
+cipher_text = []
+# error message
+error = 'Invalid Input'
+
+# keys is an input that asks user for the key in the range 1-26
+# if the key equals to zero or a number above 26, the input will print a message
+# telling that the input is invalid.
+
+keys = check_num('\nKey - ')
+# ask user for a text he wants to encrypt
+
+ask = check_text('\nText: ')
+
+coded = 0
+# for every letter in the text, the program will use the formula below
+# to encrpyt user message
+# alphabet range normal
+for i in range(len(ask)):
+    # cipher represents the letters in the text
+    cipher = ask[i]
+    # code represents the ASCII numbers of letters in the text
+    code = ord(ask[i])
+    coded_one = code + keys
+    if code <123:
+      coded=code
+    # If code is below the alphabet range, then the program will use
+    # formula below:
+    if coded_one <= ord('z'):
+        coded = code + keys
+        # If the text has spaces in it, then the program will use the
+        # Ascii number for space instead of the formula
+        if coded_one == ord(' ') + keys:
+            coded = ord(' ')
+    # If code is above the alphabet range, then the program will use
+    # formula below:
+    if coded_one > ord('z'):
+        coded = (coded_one) - 26
+        # If the text has spaces in it, then the program will use the
+        # Ascii number for space instead of the formula
+        if coded_one == ord(' ') + keys:
+            coded = ord(' ')
+    # Responsible for keeping all the symbols the same.
+    if code  in range(1,64) or code  in range(91,96):
+        coded = ord(ask[i])
+    cipher_text.append(chr(coded))
+    num_list.append(coded)
+
+# Code that adds the ASCII and cesar ciphered text to the list
+# Prints out the cesar ciphered user text.
+print('\nCiphered Text: ', ''.join(cipher_text))
+# Prints out the Ascii number that were involved in making the
+# ciphered text.
+print(','.join(map(str, num_list)))
+
