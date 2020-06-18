@@ -1,0 +1,18 @@
+# shortcut variable
+yes_no = ('n','no','yes','y')
+instructions = ''
+
+# Section of code responsible for making sure the user knows what the 
+# program is about and how it works.
+while instructions not in yes_no:
+  instructions = input('Do You Know Caesar Cipher Encryption? Yes/No: ')
+  if instructions in ('y','yes'):
+    pass
+  # If user does not know what caesar cipher is, the program will 
+  # print out the description of caesar cipher
+  elif instructions in ('n','no'):
+    print('\n** Caesar Cipher **\n')
+    print('-- Caesar Cipher is used by replacing each plaintext letter \nwith a different one a fixed number of places down the alphabet. --\n')
+  elif instructions not in yes_no:
+    print('Please type: Yes / No')
+  
