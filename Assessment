@@ -148,7 +148,7 @@ if ask1 == str('3'):
 
 # If the option input of decryption is not 'n' or 'no' then the program will
 # go over the code that is meant to work for encryption option 1 and 2 or decryption answer 'yes'
-elif ask1 == 'y' or ask1 == 'yes' :
+elif ask1 == 'y' or ask1 == 'yes' or ask1 == '2' or ask1 == '1' :
     # The program will shift every letter in user text by using for i in v loop.
     for i in range(len(ask_text)):
             # Variables that work within a function
